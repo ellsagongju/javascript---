@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>header 구현</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <style>
+        .header{
+            background-color:transparent 
+        }
+        .on{
+                background-color:#faf;
+                -webkit-transition-duration:0.4s;
+                -webkit-transition-timing-function:ease;
+                transition-duration:0.4s;
+                transition-timing-function:ease;
+        }
+        .on2{
+            box-shadow: 0 0 10px #000;
+        }
+
+    </style>
+</head>
+<body style="margin: 0">
+    <div class="header" style="position: fixed; top: 0; left:0; width: 100%; height: 100px;">
+    </div>
+    <section id="section1" style=" background-color: #333; width: 100%; height: 100vh;"></section>
+    <section id="section2" style=" background-color: #ccc; width: 100%; height: 100vh;"></section>
+    <section id="section3" style=" background-color: #666; width: 100%; height: 100vh;"></section>
+    <section id="section4" style=" background-color: #222; width: 100%; height: 100vh;"></section>
+
+</body>
+<script>
+    $(window).scroll(function () {
+            var scrollTop = $(window).scrollTop();
+            var sec01Top = $('#section1').offset().top;
+            console.log(sec01Top);
+
+            if(scrollTop == 0 && sec01Top === 0){
+                $('.header').removeClass('on').removeClass('on2');
+            }else if (scrollTop === 0 && sec01Top !== 0) {
+                $('.header').addClass('on').removeClass('on2');
+            }else {
+                $('.header').addClass('on2').addClass('on');
+            }
+        });
+</script>
+</html>
