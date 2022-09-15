@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var arr = [100, 200, 300]
+        console.log(typeof(arr));
+
+        // type에 대해 나올 것으로 예상 : 정답은 number 가 아닐까? => 땡 object로 나온다
+        // 왜냐하면 array 안에 있는 것들은 object이기 때문이다
+
+
+
+        console.log(typeof undeclaredVariable);
+            // 출력 결과: "undefined"
+
+            console.log(typeof null);
+            // 출력 결과: "object"
+
+            console.log(typeof true);
+            // 출력 결과: "boolean"
+
+            console.log(typeof 27);
+            // 출력 결과: "number"
+
+            console.log(typeof 'YD');
+            // 출력 결과: "string"
+
+            console.log(typeof Symbol());
+            // 출력 결과: "symbol"
+
+            console.log(typeof function () { });
+            // 출력 결과: "function"
+
+            console.log(typeof {});
+            // 출력 결과: "object"
+    </script>
+</body>
+</html>
