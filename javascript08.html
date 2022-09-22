@@ -35,6 +35,25 @@
     for (let [key, value] of Object.entries(user)) {
         alert(`${key}:${value}`); // name:John, age:30이 차례대로 출력
     }
+    let e = [1, 2, 3, 4, 5]
+
+    for (let i = 0; i < e.length; i++) {
+        console.log(arr[i]);
+    }
+    
+    var x = 'Mozilla';
+    var empty = '';
+
+    console.log('Mozilla는 코드 유닛 ' + x.length + '개의 길이입니다.');
+    /* "Mozilla는 코드 유닛 7개의 길이입니다." */
+    // 글자 한개 한개를 세어서 길을 잰다
+
+    console.log('빈 문자열은 ' + empty.length + '의 길이를 가집니다.');
+
+    // 1. for in
+        for (let value in e) {
+            console.log(value)
+        }
     </script>
 </body>
 </html>
