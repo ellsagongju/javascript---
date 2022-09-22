@@ -23,6 +23,15 @@
                 }
             }
             setInterval(typing, 320);
+
+            // txt로 빈문자열 선언하기
+
+            // textContent: textContent의 값은 식별자 노드의 내부 콘텐츠를 text / 
+            //             plain 으로 파싱한 결과.즉, 해당 요소 내부의 원시 텍스트(raw text) 이다.그래서 다른 프로퍼티들에 비해 파싱이 빠르다.
+            // innerText : innerText의 값은 텍스트가 최종적으로(화면에) 렌더링 된 모습, 
+            //             예를 들어 내용 숨김이나 줄바꿈 같이 의도적인 스타일링이 들어간 후의 모습이 된다.(그래서 텍스트 내 줄바꿈이 적용됐던 것!)
+            // innerHTML: innerHTML의 값은 가져온 텍스트에 포함된 태그를 인식하여 태그를 적용시킨 후 문자를 보여준다.
+            //             ** innerHTML은 성능상 좋지 않고 XSS 공격에도 취약하므로 innerHTML은 사용하지 않는 것이 좋다.
     </script>
 </body>
 </html>
