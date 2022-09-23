@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 유용한 함수 : map</title>
+</head>
+<body>
+    <script>
+        // 배열 각각의 요소를 순회하면서 각 요소에 대해 코드를 시행할 수 있다.배열에 대해 for문 같은 역할을 할 수 있다.
+        // continue, break가 필요할 때는 for문을 사용하고, 이미 있는 배열은 map을 사용.
+        let A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        A.map(v => v * 2);       //배열 A를 순회하면서 시행함.
+        let rs = A.map((v) => v * 2);        // 반환하는 값을 새로운 변수에 넣을 수 있다.
+
+
+        // map 함수는 리턴값을 쓸 수 있어서 위와 같이 결과값을 변수에 넣을 수 있다.즉, 깊은 복사를 할 수 있다.
+        // 이차원배열을 깊은 복사하려면 모든 배열이 풀려야 한다.배열이 안에 있는 채로 배열을 복사하면 얕은복사가 된다.
+        let C = [[1, 2, 3], [4, 5, 6], [2, 4, 6]];
+        let B = C.map(v => v.map(w => w))      // 2차원 배열 풀어서 B에 넣기
+
+        // ※ 주의할 것은 화살표 함수를 사용할 때 중괄호를 안쓰면 리턴을 안써도 되지만, 중괄호를 썼으면 return 을 써야한다.
+    </script>
+</body>
+</html>
