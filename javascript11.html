@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 유용한 함수 : forEach</title>
+</head>
+<body>
+    <script>
+    // forEach 함수는 배열 각각의 요소를 순회하면서 각 요소에 대해 코드를 시행하는 map 함수와 비슷한 기능을 한다.
+    // map 함수와 forEach 함수의 차이점은 forEach 함수에는 리턴값이 없다는 것이다.
+    // forEach의 결과를 변수에 넣을 수 없다.
+    
+    let A = [1,2,3,4,5,6,7,8,9,10];
+    
+    A.forEach(v => {console.log(v * 2)}); // v 는 임의의 변수이다.
+    // 2의 배수를 불러오기
+    
+    let B = [];
+    
+    A.forEach(v => {B.push(v * 2)});
+    
+    
+    // 반환할 필요가 없으면 forEach가 더 유용하다.
+    
+    let tmp = {
+    name:'aa',
+    age:10,
+    }
+    
+    Object.keys(tmp).forEach(
+    key => {console.log(tmp[key])}
+    )
+    </script>
+
+</body>
+</html>
