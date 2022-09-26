@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 유용한 함수 : 형변환</title>
+</head>
+<body>
+    <script>
+        let A = '100'
+        let B = A + 1            //'1001'. 문자열에 +를 사용하면 디폴트는 문자열.
+
+        // 1. 문자열 -> 숫자
+        //     ① parseInt() : 문자열을 정수로 변환
+        //     ② parseFloat() : 문자열을 실수로 변환
+
+
+
+        // 2. Number() : 데이터 타입을 숫자로 형변환.
+
+            let C = ['1', '2', '3', '4', '5']
+
+            console.log(...C.map(v => Number(v)));        // 배열에 든 문자열을 숫자로 형변환
+
+            console.log(Number(true));                    // boolean인 true를 숫자로 형변환
+
+            console.log(Number(C));                     // 배열 A를 형변환하면 NaN값이 나옴
+
+            console.log(typeof (Number(C)));              // 하지만 typeof를 해보면 number가 나온다.
+
+
+        // 3. 배열을 객체로 만들기
+
+            let E = ['Elice', 'Timer', 'E', 'F'];
+            E.map(v => {
+                return {
+                    name: v
+                }
+            })
+
+            let F = E.map((v, i) => {          // 첫번째는 요소, 두번째는 인덱스로 정해져있음.
+                return {
+                    name: v,
+                    index: i
+                }
+            })
+
+
+        // 4. 숫자를 진법으로 변환
+
+            let G = 10;
+            G.toString(2);   // 2진법으로 바꿔줌.
+        
+    </script>
+</body>
+</html>
