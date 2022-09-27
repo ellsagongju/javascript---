@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 유용한 함수 : split 함수</title>
+</head>
+<body>
+    <script>
+    // 해당 문자열을 기준으로 나눠서 배열에 넣음.
+
+    str = '<h1>안녕하세요</h1><div>반갑</div>'
+
+    str.split('>').map((tag, i) => {
+        if (i == 1) return tag.split('<')[0];
+        else if (i == 3) return tag.split('<')[0];
+    })
+    console.log(str);
+    // 배열.join('') => 배열을 쉼표없이 붙여서 출력가능.
+    </script>
+</body>
+</html>
