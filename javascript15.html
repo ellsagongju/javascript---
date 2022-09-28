@@ -7,6 +7,27 @@
     <title>자바스크립트 유용한 함수 : ... 스프레드 연산자</title>
 </head>
 <body>
-    
+    <script>
+        let A = [1, 2, 3, 4, 5];
+        let B = [6, 7, 8];
+        let C = [...A, ...B];      // A.concat(B) 와 같음
+        // ...array는 array 배열의 값을 뿌려준다
+        
+        let student = {
+            name: 'elice',
+            lang: ['C', 'Python', 'JavaScrript']
+        }
+
+        let temp = {
+            company: 'Elice'
+        }
+
+        let newObj = {                  // student, temp 두 객체를 합쳐준다.
+            ...student,
+            ...temp,
+        }
+
+        // 객체로도 가능하다
+    </script>
 </body>
 </html>
