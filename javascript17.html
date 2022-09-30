@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유용한 자바스크힙트</title>
+</head>
+<body>
+    <script>
+            // IF 문에 or( || ) 연산자 사용하는 것보단 Includes를
+
+            let car = ["Kona", "morning", "Santafe"]
+
+            // 보통 방법
+            // if (car === "Kona" || car === "morning" || car === "Santafe" || car === "Sonata") {
+
+            // }
+            // 테크닉
+            
+
+            if ((["Kona", "morning", "Santafe", "Sonata"]).includes(car)) {
+                console.log('true');
+            }else{
+                console.log('sorry');
+            }
+    </script>
+</body>
+</html>
