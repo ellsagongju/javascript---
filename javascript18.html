@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유용한 자바스크립트2</title>
+</head>
+<body>
+    <script>
+        // IF ... else 를 삼항 연산자로
+        // 오리지날
+        // let mychoice: boolean;
+
+        // if (money > 100) {
+        //     mychoice = true;
+        // } else {
+        //     mychoice = false;
+        // }
+
+
+        //삼항 연산자로 짧게
+        // let mychoice = (money > 100) ? true : false;
+
+        //심지어는 더 짧게 가능
+        // let mychoice = money > 100;
+
+
+        // 3항 연산자를 사용 시 짧으면 괜찮아 보이지만 다수의 조건이 붙게되면 아래의 예시처럼 복잡해서 코드를 읽기가 매우 난해해진다..
+        // 삼항연산자는 최대한 피하자
+
+
+        // let salary = 300,
+
+        // checking = (salary > 100) ? 'greater 100' : (x < 50) ? 'less 50' : 'between 50 and 100';
+        // console.log(checking);  
+        
+        // "greater than 100"
+        // 이것을 if ...else 문으로 고쳐쓰면 다음과 같다.
+
+
+
+            let salary = 300;
+
+            if (salary > 100) {
+                console.log('greater 100');
+            } else if (x < 50) {
+                console.log('less 50');
+            } else {
+                console.log('between 50 and 100');
+            }
+            // 위의 예시처럼 let이나 const 같은 키워드로 변수 선언시 중복해서 쓰게 된다면 생략이 가능하며 comma( , )로 구분짓는다.
+    </script>
+</body>
+</html>
