@@ -4,18 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>includes 메서드</title>
+    <title>Nullish coalescing 연산자</title>
 </head>
 <body>
     <script>
-        //longhand
-        if (fruit === 'apple' || fruit === 'banana' || fruit === 'orange' || fruit ==='mango') {
-            //logic
-        }
-        //shorthand
-        if (['apple', 'banana', 'orange', 'mango'].includes(fruit)) {
-        //logic
-        }
+        const data = null ?? 'data';
+        console.log(data);
+        // expected output: "data"
+        const data1 = 1 ?? 4;
+        console.log(data1);
+        // expected output: 1
     </script>
 </body>
 </html>
