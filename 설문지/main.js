@@ -50,4 +50,34 @@ $(document).ready(function () {
       $(this).parent().hide();
    });
 
+      // 항목 선택형 중분류 태그 추가 버튼 
+   $('.add_mach').click(function () {
+      var mach_check = $("select[name=mach_02] option:selected");
+
+      if (mach_check.selected) {
+         console.log($(this).val()); //value값 가져오기
+         console.log(mach_check.text()); //text값 가져오기
+      } else {
+         console.log('boo');
+        }
+   });
+
+});
+
+
+// 항목 선택형 대분류 중분류 관련 짓기
+var mach = false;
+function update_selected() {
+  $("#mach_02").val(0);
+  $("#mach_02").find("option[value!=0]").detach();
+
+   // 중분류 클래스 = (.mach + 대분류 value 값)
+  $("#mach_02").append(mach.filter(".mach" + $(this).val()));
+}
+$(function() {
+  mach = $("#mach_02").find("option[value!=0]");
+  mach.detach();
+
+  $("#mach_01").change(update_selected);
+  $("#mach_01").trigger("change");
 });
