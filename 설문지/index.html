@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="./main.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+    <!-- 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    
+    <!-- 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <nav th:replace="fragments/page_breadcrumb"></nav>
+        <form name="editForm" th:action="@{/education/form}" th:object="${education}" method="post"
+            enctype="multipart/form-data" onsubmit="return validationForm();">
+            <input type="hidden" th:field="*{eduSeq}">
+            <input type="hidden" name="menuCode" th:value="${menuCode}">
+            <input type="hidden" name="pageParams" th:value="${pageParams}">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+    
+                            <!--여기가 질문 유형 선택 (항목추가형 / 항목선택형)-->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label required">질문유형 선택</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" required="required">
+                                                <option name="item" value="item_add" selected="selected">항목추가형</option>
+                                                <option name="item" value="item_choice">항목선택형</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!--{항목 공통사항-->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label required">질문 제목</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" th:field="*{subject}" maxlength="100" class="form-control"
+                                                required="required">
+                                            <th:block th:include="fragments/form_invalid:: form_invalid('subject')">
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">부가 설명</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" th:field="*{content}" rows="10"></textarea>
+                                            <th:block th:include="fragments/form_invalid:: form_invalid('content')">
+                                            </th:block>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">답변 항목 옵션</label>
+                                        <div class="col-sm-10 flex_box">
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input bothChoice"
+                                                        name="bothChoice" value="yes" data-label="복수 선택 가능" checked>복수 선택 가능
+                                                    <i class="input-frame"></i>
+                                                </label>
+                                            </div>
+                                            <div class="flex_box select_num">
+                                                <span style="margin: 0 10px 8px 0;"> ( </span>
+                                                <div class="form-check">
+                                                    <label class="form-check-label" th:for="rankUse">
+                                                        <input type="checkbox" th:value="0" id="rankUse" name="rankUse">
+                                                        순위 입력
+                                                    </label>
+                                                </div>
+                                                <span style="margin: 0 10px 8px 10px;"> / </span>
+                                                <div class="form-check flex_box">
+                                                    <label class="form-check-label" th:for="numUse">
+                                                        <input type="checkbox" th:value="1" id="numUse" name="numUse">
+                                                        최대 수
+                                                    </label>
+                                                    <div class="form_num">
+                                                        <input class="checkNum" type="number" value="2" min="2" max="10" disabled>
+                                                    </div>
+                                                </div>
+                                                <span style="margin: 0 10px 8px 10px;"> ) </span>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input bothChoice"
+                                                        name="bothChoice" value="no" data-label="복수 선택 불가">복수 선택 불가
+                                                    <i class="input-frame"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--항목 공통사항 끝}-->
+    
+                            <!-- {여기서 부터 항목추가형 형태-->
+                            <div class="row item_wrap item_wrap01">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">답변 항목</label>
+                                        <div class="col-sm-10">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <select id="selectBox" name="selectBox">
+                                                        <option value="option1" selected="selected">업종</option>
+                                                        <option value="option2">주소</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-10">
+                                                    <div class="div1 row">
+                                                        <div class="col-sm-4">
+                                                            <select name="" id="">
+                                                                <option value="" selected="selected">대분류</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <select name="" id="">
+                                                                <option value="" selected="selected">중분류</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <select name="" id="">
+                                                                <option value="" selected="selected">소분류</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="div2">
+                                                        <input type="text" th:field="*{tags}" class="form-control">
+                                                        <th:block
+                                                            th:include="fragments/form_invalid:: form_invalid('tags')">
+                                                        </th:block>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 항목추가형 형태  끝}-->
+    
+    
+                            <!-- {여기서 부터 항목선택형 형태-->
+                            <div class="row item_wrap item_wrap02">
+                                <div class="col-sm-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label">답변 항목</label>
+                                        <div class="col-sm-10">
+                                            <div class="row">
+                                                <div class="col-sm-10 add_item_wrap">
+                                                    <input class="form-control" type="text" placeholder="계획없음">
+                                                    <div class="row flex_box">
+                                                        <div class="col-sm-2" style="margin-top: 10px">
+                                                            매칭서비스 분류 추가
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="row add_item_choice">
+                                                                <div class="col-sm-5">
+                                                                    <select name="" id="">
+                                                                        <option value="" selected="selected">대분류</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-sm-5">
+                                                                    <select name="" id="">
+                                                                        <option value="" selected="selected">중분류</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div>
+                                                                    <button
+                                                                        class="btn btn-primary mr-2 btn-icon-text">+</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="tag_wrap">
+                                                                <span class="tag">
+                                                                    중분류 1
+                                                                    <span class="del_tag">x</span>
+                                                                </span>
+                                                                <span class="tag">
+                                                                    중분류 2
+                                                                    <span class="del_tag">x</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+    
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2 add_item_button">
+                                                    <button class="btn btn-primary mr-2 btn-icon-text">추가하기</button>
+                                                </div>
+                                                <div class="col-sm-10 flex_box item_list_wrap">
+                                                    <div class="del_item_button">
+                                                        <button type="button" class="btn red">-</button>
+                                                    </div>
+                                                    <div class="item_list">
+                                                        <div>
+                                                            <p>여기에 선택 내용이 담김</p>
+                                                        </div>
+                                                        <div class="item_tag_wrap">
+                                                            <span class="item_tag">중분류 1</span>
+                                                            <span class="item_tag">중분류 2</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 항목선택형 형태  끝}-->
+    
+    
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="btn btn-outline-primary btn-icon-text" th:href="@{|/education?${pageParams}|}">
+                        <i class="btn-icon-prepend" data-feather="list"></i>목록
+                    </a>
+                    <button type="submit" class="btn btn-primary mr-2 btn-icon-text" th:if="*{eduSeq == 0}">
+                        <i class="btn-icon-prepend" data-feather="edit"></i>저장
+                    </button>
+                    <button type="submit" class="btn btn-secondary mr-2 btn-icon-text" th:unless="*{eduSeq == 0}">
+                        <i class="btn-icon-prepend" data-feather="edit"></i>수정
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
