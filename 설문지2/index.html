@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="./main.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    
+    <!-- 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    
+    <!-- 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <nav th:replace="fragments/page_breadcrumb"></nav>
+        <form name="editForm" th:action="@{/education/form}" th:object="${education}" method="post"
+            enctype="multipart/form-data" onsubmit="return validationForm();">
+            <input type="hidden" th:field="*{eduSeq}">
+            <input type="hidden" name="menuCode" th:value="${menuCode}">
+            <input type="hidden" name="pageParams" th:value="${pageParams}">
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+            
+                            <!--여기가 질문 유형 선택 (항목추가형 / 항목선택형)-->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label required">질문유형 선택</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" name="item_choice" required="required">
+                                                <option name="item" value="item_add" selected="selected">항목추가형</option>
+                                                <option name="item" value="item_choice">항목선택형</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+            
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="btn btn-outline-primary btn-icon-text" th:href="@{|/education?${pageParams}|}">
+                        <i class="btn-icon-prepend" data-feather="list"></i>목록
+                    </a>
+                    <button type="submit" class="btn btn-primary mr-2 btn-icon-text" th:if="*{eduSeq == 0}">
+                        <i class="btn-icon-prepend" data-feather="edit"></i>저장
+                    </button>
+                    <button type="submit" class="btn btn-secondary mr-2 btn-icon-text" th:unless="*{eduSeq == 0}">
+                        <i class="btn-icon-prepend" data-feather="edit"></i>수정
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+</html>
