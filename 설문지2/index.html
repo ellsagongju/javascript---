@@ -37,20 +37,22 @@
                                         <label class="col-sm-4 col-form-label required">질문유형 선택</label>
                                         <div class="col-sm-6">
                                             <select class="form-control" id="q_list" required="required">
-                                                <option name="q_list" value="" selected="selected">질문선택</option>
+                                                <option name="q_list" value="0" selected="selected">질문선택</option>
                                                 <option name="q_list" value="1">질문 1</option>
                                                 <option name="q_list" value="2">질문 2</option>
                                                 <option name="q_list" value="3">질문 3</option>
+                                                <option name="q_list" value="4">질문 4</option>
+                                                <option name="q_list" value="5">질문 5</option>
+                                                <option name="q_list" value="6">질문 6</option>
                                             </select>
                                         </div>
                                         <button type="button" onclick="changeQ(this)" class="col-sm-2 btn q_add_btn btn-success">질문 추가</button>
                                     </div>
                                 </div>
-                                <div id="survey-list_wrap" class="col-sm-6"></div>
                             </div>
-            
-            
-            
+                            <div class="row">
+                                <div class="col-sm-12" id="survey_list_wrap"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
