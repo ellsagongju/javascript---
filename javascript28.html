@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 객체 리터럴 방싱 (object literal)
+        var myObj = {
+
+                name: '카레유',
+                age: 20,
+
+                hello: function () {
+                    return `이름은 ${this.name}이고, 나이는 ${this.age}입니다.`;
+                }
+            };
+
+            console.log(myObj);  // { name: '카레유', age: 20, hello: [Function: hello] }
+
+
+
+
+            // 생성자 방식(Constructor)
+            var myObj = new Object();
+
+                myObj.name = '카레유';
+                myObj['age'] = 20;
+
+                myObj.hello = function () {
+                    return `이름은 ${this.name}이고, 나이는 ${this.age}입니다.`;
+                };
+
+                console.log(myObj);  // { name: '카레유', age: 20, hello: [Function] }
+                // String객체 생성하기
+                    var strObj = new String('hello');
+                    console.log(strObj); //[String: 'hello']
+
+
+                // Array(배열)객체 생성하기
+                var arrObj = new Array([1, 2, 3]);
+                console.log(arrObj); //[ [ 1, 2, 3 ] ]
+
+
+                // 생성자 함수 만들기
+                var SelfObj = function (name, age) {
+                    this.name = name;  // this는 자신이 속한 객체를 참조하는 '자기 참조 변수'다.
+                    this.age = age;
+                    this.hello = function () {
+                        return `이름은 ${this.name}이고, 나이는 ${this.age}입니다.`;
+                    }
+                }
+
+                // 객체 생성하기
+                var selfObj = new SelfObj('카레유', 20);
+                console.log(selfObj); // SelfObj { name: '카레유', age: 20, hello: [Function] }
+
+    // https://curryyou.tistory.com/189
+
+
+    </script>
+</body>
+</html>
